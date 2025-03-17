@@ -739,6 +739,8 @@ require('lazy').setup({
 })
 
 require 'custom.conf.ui'
+require 'custom.conf.autocmds'
+require 'custom.conf.editor'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
