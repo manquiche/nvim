@@ -1,6 +1,6 @@
-vim.keymap.set('n', '<S-Tab>', ':bprev<CR>', { noremap = true })
-vim.keymap.set('n', '<Tab>', ':bnext<CR>', { noremap = true })
-vim.keymap.set('n', '<leader>se', 'oif err != nil {<CR>}<Esc>Oreturn err<Esc>')
+vim.keymap.set('n', '<S-Tab>', '<cmd>bprev<CR>', { noremap = true })
+vim.keymap.set('n', '<Tab>', '<cmd>bnext<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>gge', 'oif err != nil {<CR>}<Esc>Oreturn err<Esc>')
 vim.keymap.set('n', '<C-s>', '<cmd>w<cr>')
 
 -- vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, { desc = 'Show signature help' })
