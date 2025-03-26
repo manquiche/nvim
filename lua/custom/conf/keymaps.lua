@@ -4,9 +4,9 @@ vim.keymap.set('n', '<leader>gge', 'oif err != nil {<CR>}<Esc>Oreturn err<Esc>')
 vim.keymap.set('n', '<C-s>', '<cmd>w<cr>')
 
 -- vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, { desc = 'Show signature help' })
-vim.keymap.set('i', '<C-k>', function()
-  require('lsp_signature').toggle_float_win()
-end, { silent = true, noremap = true, desc = 'toggle signature help' })
+-- vim.keymap.set('i', '<C-k>', function()
+--   require('lsp_signature').toggle_float_win()
+-- end, { silent = true, noremap = true, desc = 'toggle signature help' })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
@@ -38,3 +38,38 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+----------------
+-- Neotest
+-- -------------
+
+vim.keymap.set('n', '<leader>nr', function()
+  require('neotest').run.run()
+end, { desc = 'Run nearest test' })
+vim.keymap.set('n', '<leader>nl', function()
+  require('neotest').run.run_last()
+end, { desc = 'Run last test' })
+vim.keymap.set('n', '<leader>ns', function()
+  require('neotest').run.stop()
+end, { desc = 'Stop neotest' })
+vim.keymap.set('n', '<leader>nd', function()
+  require('neotest').run.run { strategy = 'dap' }
+end, { desc = 'Debug nearest test' })
+vim.keymap.set('n', '<leader>nf', function()
+  require('neotest').run.run(vim.fn.expand '%')
+end, { desc = 'Run current file' })
+vim.keymap.set('n', '<leader>na', function()
+  require('neotest').run.run { suite = true }
+end, { desc = 'Run all tests' })
+vim.keymap.set('n', '<leader>nv', function()
+  require('neotest').summary.toggle()
+end, { desc = 'Toggle summary' })
+vim.keymap.set('n', '<leader>np', function()
+  require('neotest').output_panel.toggle()
+end, { desc = 'Toggle output panel' })
+vim.keymap.set('n', '<leader>no', function()
+  require('neotest').output.open()
+end, { desc = 'Show test output' })
+vim.keymap.set('n', '<leader>nw', function()
+  require('neotest').watch.toggle(vim.fn.expand '%')
+end, { desc = 'Toggle watching file' })
