@@ -407,6 +407,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+      vim.keymap.set('n', '<leader>sy', '<cmd>Telescope yaml_schema<cr>', { desc = '[S]earch [Y]aml schema' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
       vim.keymap.set({ 'n', 'x' }, '<leader>rr', function()
         require('telescope').extensions.refactoring.refactors()
@@ -625,6 +626,41 @@ require('neotest').setup {
         test_table = true,
       },
       recursive_run = true,
+    },
+  },
+}
+
+-- Load and setup the plugin
+local sort_lines = require 'local.sort-lines'
+sort_lines.setup {
+  -- Default sorting options
+  case_sensitive = true, -- Set to false for case-insensitive sorting
+  reverse = false, -- Set to true for reverse sorting
+
+  -- Key mappings
+  mappings = {
+    n = {
+      ['<leader>Ss'] = function()
+        sort_lines.sort_paragraph()
+      end,
+      ['<leader>Sf'] = function()
+        sort_lines.sort_file()
+      end,
+      ['<leader>Sy'] = function()
+        local start_line = vim.fn.line '.'
+        local end_line = vim.fn.line '$'
+        sort_lines.sort_structured(start_line, end_line)
+      end,
+    },
+    v = {
+      ['<leader>S'] = function()
+        sort_lines.sort_visual_selection()
+      end,
+      ['<leader>Sy'] = function()
+        local start_line = vim.fn.line "'<"
+        local end_line = vim.fn.line "'>"
+        sort_lines.sort_structured(start_line, end_line)
+      end,
     },
   },
 }
