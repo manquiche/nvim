@@ -1,5 +1,5 @@
 local function getTheme()
-  local light_theme = 'modus_operandi'
+  local light_theme = 'dayfox'
   local dark_theme = 'obscure'
 
   local home = os.getenv 'HOME'

@@ -25,6 +25,10 @@ return {
         name = 'Kubernetes 1.32.3',
         uri = 'https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.32.3-standalone-strict/all.json',
       },
+      {
+        name = 'Flux CD',
+        uri = 'https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/all.json',
+      },
     },
 
     -- Pass any additional options that will be merged in the final LSP config
@@ -38,17 +42,19 @@ return {
           validate = true,
           format = { enable = true },
           hover = true,
-          -- schemaStore = {
-          --   enable = true,
-          --   url = 'https://www.schemastore.org/api/json/catalog.json',
-          -- },
           schemaStore = {
-            enable = false,
-            url = '',
+            enable = true,
+            url = 'https://www.schemastore.org/api/json/catalog.json',
           },
-          -- schemas = {
-          --   kubernetes = { 'k8s**.yaml', 'kube*/*.yaml' },
+          -- schemaStore = {
+          --   enable = false,
+          --   url = '',
           -- },
+          schemas = {
+            kubernetes = { 'k8s**.yaml', 'kube*/*.yaml' },
+            ['http://json.schemastore.org/kustomization'] = '*kustomization.{yml,yaml}',
+            ['https://json.schemastore.org/gitlab-ci'] = '*gitlab-ci*.{yml,yaml}',
+          },
           schemaDownload = { enable = true },
           trace = { server = 'debug' },
         },
