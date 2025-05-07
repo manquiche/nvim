@@ -40,6 +40,16 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 ----------------
+-- Go
+-- -------------
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'go' },
+  callback = function()
+    vim.keymap.set('n', '<leader>cgj', '<cmd>GoAddTag<cr>', { desc = 'Add json Go tags under cursor' })
+  end,
+})
+
+----------------
 -- Neotest
 -- -------------
 
