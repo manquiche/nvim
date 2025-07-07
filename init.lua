@@ -397,6 +397,7 @@ require('lazy').setup({
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'ast_grep')
       pcall(require('telescope').load_extension, 'refactoring')
+      pcall(require('telescope').load_extension, 'yaml-schema')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'

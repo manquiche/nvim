@@ -21,10 +21,10 @@ return {
 
     -- Additional schemas available in Telescope picker
     schemas = {
-      {
-        name = 'Kubernetes 1.32.3',
-        uri = 'https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.32.3-standalone-strict/all.json',
-      },
+      -- {
+      --   name = 'Kubernetes 1.32.3',
+      --   uri = 'https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.32.3-standalone-strict/all.json',
+      -- },
       {
         name = 'Flux CD',
         uri = 'https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/all.json',
@@ -51,7 +51,7 @@ return {
           --   url = '',
           -- },
           schemas = {
-            kubernetes = { 'k8s**.yaml', 'kube*/*.yaml' },
+            kubernetes = { 'k8s**.yaml', 'kube*/*.yaml', '*.{yml,yaml}' },
             ['http://json.schemastore.org/kustomization'] = '*kustomization.{yml,yaml}',
             ['https://json.schemastore.org/gitlab-ci'] = '*gitlab-ci*.{yml,yaml}',
           },
