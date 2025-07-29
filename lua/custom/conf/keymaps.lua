@@ -96,6 +96,15 @@ vim.keymap.set('n', '<leader>nw', function()
   require('neotest').watch.toggle(vim.fn.expand '%')
 end, { desc = 'Toggle watching file' })
 
+-- Grug-Far
+vim.keymap.set('n', '<leader>Gr', function()
+  require('grug-far').open()
+end, { desc = 'Find in project with [G]rug-Far and [r]ipgrep' })
+
+vim.keymap.set('n', '<leader>Ga', function()
+  require('grug-far').open { engine = 'astgrep' }
+end, { desc = 'Find in project with [G]rug-Far and [a]st-grep' })
+
 -- Copilot all neovim keymaps
 vim.keymap.set('i', '<M-CR>', function()
   require('copilot.suggestion').accept()
