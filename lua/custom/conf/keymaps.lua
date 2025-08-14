@@ -55,6 +55,13 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'go' },
+  callback = function()
+    vim.keymap.set('n', '<leader>cgi', '<cmd>GoImports<cr>', { desc = 'Add json Go tags under cursor' })
+  end,
+})
+
 ----------------
 -- Hardtime
 -- -------------

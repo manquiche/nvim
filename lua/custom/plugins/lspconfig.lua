@@ -177,7 +177,12 @@ return {
       -- But for many setups, the LSP (`ts_ls`) will work just fine
       -- ts_ls = {},
       --
-
+      ansiblels = {
+        settings = {
+          filetypes = { 'yaml.ansible' },
+          root_dir = { 'ansible.cfg', '.ansible-lint' },
+        },
+      },
       lua_ls = {
         -- cmd = { ... },
         -- filetypes = { ... },
