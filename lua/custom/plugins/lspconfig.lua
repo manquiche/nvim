@@ -197,6 +197,24 @@ return {
           },
         },
       },
+      jsonls = {
+        settings = {
+          json = {
+            schemas = require('schemastore').json.schemas(),
+            validate = { enable = true },
+          },
+        },
+      },
+
+      helm_ls = {
+        settings = {
+          ['helm-ls'] = {
+            yamlls = {
+              path = 'yaml-language-server',
+            },
+          },
+        },
+      },
     }
 
     -- Ensure the servers and tools above are installed

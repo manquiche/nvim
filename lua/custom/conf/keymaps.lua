@@ -52,16 +52,10 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'go' },
   callback = function()
     vim.keymap.set('n', '<leader>cgj', '<cmd>GoAddTag<cr>', { desc = 'Add json Go tags under cursor' })
+    vim.keymap.set('n', '<leader>cgi', '<cmd>GoImports<cr>', { desc = 'Tidy imports in current buffer' })
+    vim.keymap.set('n', '<leader>cgr', '<cmd>GoModTidy<cr><cmd>LspRestart<cr>', { desc = 'Go mod tidy and restart lsp' })
   end,
 })
-
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'go' },
-  callback = function()
-    vim.keymap.set('n', '<leader>cgi', '<cmd>GoImports<cr>', { desc = 'Add json Go tags under cursor' })
-  end,
-})
-
 ----------------
 -- Hardtime
 -- -------------

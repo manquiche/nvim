@@ -3,16 +3,14 @@ return {
   dependencies = {
     { 'nvim-lua/plenary.nvim' },
     { 'nvim-telescope/telescope.nvim' },
+    { 'b0o/schemastore.nvim' },
   },
   config = function()
+    -- require('telescope').load_extension 'yaml_schema'
     local schema_companion = require 'schema-companion'
     schema_companion.setup {
       -- if you have telescope you can register the extension
       enable_telescope = true,
-      matchers = {
-        -- add your matchers
-        require('schema-companion.matchers.kubernetes').setup { version = 'master' },
-      },
       schemas = {
         {
           name = 'Flux CD',
@@ -24,6 +22,5 @@ return {
         },
       },
     }
-    require('lspconfig').yamlls.setup(schema_companion.setup_client {})
   end,
 }

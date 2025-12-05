@@ -23,7 +23,7 @@ if vim.g.neovide then
 
   -- Font settings
   vim.g.neovide_scale_factor = 1.0
-  -- vim.o.guifont = "YourPreferredFont:h10"
+  vim.o.guifont = '0xProto:h13'
 
   -- Hardware acceleration
   vim.g.neovide_prefer_global_shader = true
