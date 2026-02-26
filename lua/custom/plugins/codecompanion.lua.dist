@@ -1,0 +1,28 @@
+---@type LazySpec
+return {
+  'olimorris/codecompanion.nvim',
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'ravitemer/mcphub.nvim',
+  },
+  opts = {
+    -- extensions = {
+    --   callback = 'mcphub.extensions.codecompanion',
+    --   opts = {
+    --     make_vars = true,
+    --     make_slash_commands = true,
+    --     show_result_in_chat = true,
+    --   },
+    -- },
+    interactions = {
+      chat = {
+        adapter = 'anthropic',
+        model = 'claude-sonnet-4-20250514',
+      },
+    },
+    -- NOTE: The log_level is in `opts.opts`
+    opts = {
+      log_level = 'DEBUG',
+    },
+  },
+}

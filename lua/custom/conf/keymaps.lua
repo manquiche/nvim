@@ -1,6 +1,5 @@
 vim.keymap.set('n', '<S-Tab>', '<cmd>bprev<CR>', { noremap = true })
 vim.keymap.set('n', '<Tab>', '<cmd>bnext<CR>', { noremap = true })
-vim.keymap.set('n', '<leader>gge', 'oif err != nil {<CR>}<Esc>Oreturn err<Esc>')
 vim.keymap.set('n', '<C-s>', '<cmd>w<cr>')
 
 -- vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, { desc = 'Show signature help' })
@@ -15,6 +14,9 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 vim.keymap.set('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'See [D]iagnostic under [C]ursor' })
+
+-- Map Shift+K to hover documentation for LSP
+vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Show hover documentation' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -54,6 +56,7 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.keymap.set('n', '<leader>cgj', '<cmd>GoAddTag<cr>', { desc = 'Add json Go tags under cursor' })
     vim.keymap.set('n', '<leader>cgi', '<cmd>GoImports<cr>', { desc = 'Tidy imports in current buffer' })
     vim.keymap.set('n', '<leader>cgr', '<cmd>GoModTidy<cr><cmd>LspRestart<cr>', { desc = 'Go mod tidy and restart lsp' })
+    vim.keymap.set('n', '<leader>cge', '<cmd>GoIfErr<cr>', { desc = 'if err ...' })
   end,
 })
 ----------------
@@ -124,3 +127,8 @@ end, { desc = 'Previous Copilot suggestion' })
 vim.keymap.set('n', '<leader>gc', function()
   require('copilot').toggle()
 end, { desc = 'Toggle Copilot' })
+
+--- Codecompanion
+vim.keymap.set({ 'n', 'v' }, '<C-a>', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true })
+vim.keymap.set({ 'n', 'v' }, '<LocalLeader>a', '<cmd>CodeCompanionChat Toggle<cr>', { noremap = true, silent = true })
+vim.keymap.set('v', 'ga', '<cmd>CodeCompanionChat Add<cr>', { noremap = true, silent = true })
