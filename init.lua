@@ -106,7 +106,6 @@ vim.o.number = true
 --  Experiment for yourself to see if you like it!
 vim.opt.relativenumber = true
 
-
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
 
@@ -177,7 +176,6 @@ vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
-
 
 require 'custom.conf.keymaps'
 
@@ -448,14 +446,10 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set('n', '<leader>sy', function()
-        require('schema-companion').select_schema()
-      end, { desc = '[S]earch [Y]aml schema' })
+      vim.keymap.set('n', '<leader>sy', function() require('schema-companion').select_schema() end, { desc = '[S]earch [Y]aml schema' })
       vim.keymap.set('n', '<leader>sc', builtin.commands, { desc = '[S]earch [C]ommands' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
-      vim.keymap.set({ 'n', 'x' }, '<leader>Rr', function()
-        require('telescope').extensions.refactoring.refactors()
-      end)
+      vim.keymap.set({ 'n', 'x' }, '<leader>Rr', function() require('telescope').extensions.refactoring.refactors() end)
 
       -- This runs on LSP attach per buffer (see main LSP attach function in 'neovim/nvim-lspconfig' config for more info,
       -- it is better explained there). This allows easily switching between pickers if you prefer using something else!
@@ -665,22 +659,20 @@ require('lazy').setup({
           --
           -- This may be unwanted, since they displace some of your code
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-            map('<leader>th', function()
-              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-            end, '[T]oggle Inlay [H]ints')
+            map('<leader>th', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }) end, '[T]oggle Inlay [H]ints')
           end
         end,
       })
 
       -- Change diagnostic symbols in the sign column (gutter)
-      -- if vim.g.have_nerd_font then
-      --   local signs = { ERROR = '', WARN = '', INFO = '', HINT = '' }
-      --   local diagnostic_signs = {}
-      --   for type, icon in pairs(signs) do
-      --     diagnostic_signs[vim.diagnostic.severity[type]] = icon
-      --   end
-      --   vim.diagnostic.config { signs = { text = diagnostic_signs } }
-      -- end
+      if vim.g.have_nerd_font then
+        local signs = { ERROR = '', WARN = '', INFO = '', HINT = '' }
+        local diagnostic_signs = {}
+        for type, icon in pairs(signs) do
+          diagnostic_signs[vim.diagnostic.severity[type]] = icon
+        end
+        vim.diagnostic.config { signs = { text = diagnostic_signs } }
+      end
 
       -- LSP servers and clients are able to communicate to each other what features they support.
       --  By default, Neovim doesn't support everything that is in the LSP specification.
@@ -699,17 +691,17 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
-        -- rust_analyzer = {},
+        clangd = {},
+        gopls = {},
+        pyright = {},
+        rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
+        ts_ls = {},
         --
 
         lua_ls = {
@@ -935,7 +927,7 @@ require('lazy').setup({
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     config = function()
-      local filetypes = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'go', 'markdown', 'markdown_inline', 'query', 'rust', 'vim', 'vimdoc', 'zig' }
+      local filetypes = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'go', 'markdown', 'query', 'rust', 'vimdoc', 'zig' }
       require('nvim-treesitter').install(filetypes)
       vim.api.nvim_create_autocmd('FileType', {
         pattern = filetypes,
@@ -1018,12 +1010,8 @@ sort_lines.setup {
   -- Key mappings
   mappings = {
     n = {
-      ['<leader>Ss'] = function()
-        sort_lines.sort_paragraph()
-      end,
-      ['<leader>Sf'] = function()
-        sort_lines.sort_file()
-      end,
+      ['<leader>Ss'] = function() sort_lines.sort_paragraph() end,
+      ['<leader>Sf'] = function() sort_lines.sort_file() end,
       ['<leader>Sy'] = function()
         local start_line = vim.fn.line '.'
         local end_line = vim.fn.line '$'
@@ -1031,9 +1019,7 @@ sort_lines.setup {
       end,
     },
     v = {
-      ['<leader>S'] = function()
-        sort_lines.sort_visual_selection()
-      end,
+      ['<leader>S'] = function() sort_lines.sort_visual_selection() end,
       ['<leader>Sy'] = function()
         local start_line = vim.fn.line "'<"
         local end_line = vim.fn.line "'>"
