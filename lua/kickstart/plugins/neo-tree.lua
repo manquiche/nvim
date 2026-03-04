@@ -23,6 +23,7 @@ return {
       end
     end
   end,
+  lazy = false,
   keys = {
     { '<leader>e', ':Neotree toggle<CR>', desc = 'NeoTree toggle', silent = true },
     { '<leader>o', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
